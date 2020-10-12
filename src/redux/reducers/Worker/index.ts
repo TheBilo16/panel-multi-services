@@ -16,6 +16,7 @@ const initialState : WorkerController.IWorkers = {
     lastname : '',
     profileImage : '',
     description:'',
+    works:[]
   }
 }
 
@@ -44,7 +45,7 @@ const reducer = ( state = initialState , action ) => {
     case TYPES.UPDATE_WORKER_SELECTED_DATA :  //ID DEL TRABAJOS SELECCIONADO
       return ({
         ...state,
-        workerSelected : action.payload
+        workerSelectedData : action.payload
       })
     default : 
       return state;

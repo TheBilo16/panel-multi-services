@@ -25,7 +25,6 @@ const List = () => {
 
   const dispatch = useDispatch();
   const { isWorkerSelected , workers , isLoadingInformation } = useSelector( ({worker}) => worker ) ;
-  if (isLoadingInformation) console.log(workers);
 
   return (
     <Content> 

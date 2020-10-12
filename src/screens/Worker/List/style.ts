@@ -1,12 +1,9 @@
 import styled , { css } from 'styled-components';
 
-
-
 const Content = styled.div`
   display:flex;
   width: 480px;
   height:auto;
-  margin:0;
   flex-flow:column;
 `
 
