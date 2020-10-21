@@ -2,11 +2,10 @@ namespace WorkerController {
   type ToptionSelectedWorker = 'Description' | 'Works'
   
   interface IWork {
+    fullname:string,
     state:string,
     price:number,
     description:string,
-    username:string,
-    userlastname:string,
     descriptionUser:string,
   }
 
@@ -16,8 +15,7 @@ namespace WorkerController {
     location : string , //En ver
     basePrice : number,
     specialty : string,
-    name : string,
-    lastname : string,
+    fullname:string,
     profileImage : string,
     description:string,
     works : Array<IWork>

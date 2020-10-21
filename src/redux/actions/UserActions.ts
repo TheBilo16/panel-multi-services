@@ -20,8 +20,7 @@ const formatUsers = (users) => {
   let usersSend : [object] = users.map((user,i)=>{
       return ({
         id : user.id,
-        name : user.name,
-        lastname : user.lastname,
+        fullname : user.fullname,
         username : user.username,
         password : user.password,
         profileImage : user.profileImage,

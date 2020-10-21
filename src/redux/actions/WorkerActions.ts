@@ -25,8 +25,7 @@ const formatWork = (work) => {
         description : e.description,
         state : e.state,
         price : e.price,
-        username : e.user.name,
-        userlastname : e.user.lastname,
+        fullname : e.user.fullname,
         descriptionUser : e.user.description
       })
     })
@@ -42,8 +41,7 @@ const formatWorkers = workers => {
       location:e.location,
       basePrice : e.basePrice,
       specialty : e.specialty.name,
-      name : e.user.name,
-      lastname : e.user.lastName,
+      fullname: e.user.fullname,
       profileImage : e.user.profileImage,
       description : e.user.description,
       works : formatWork(e.workdetails)
@@ -83,6 +81,8 @@ export const updateWorks = payload => ({
   payload
 })
 
+
+
 // ACTIONS THUNKS
 export const loadingWorkers = () => async dispatch => {
   try {
@@ -91,6 +91,21 @@ export const loadingWorkers = () => async dispatch => {
     dispatch(updateStateWorker(workersSend));
     dispatch(updateLoadingInformation(true));
   } catch (e) { console.log(e.message) }
+}
+
+export const findWorkBySpecialty = (specialty:string) => async (dispatch) => {
+
+  if (!specialty){ dispatch(loadingWorkers());return; }
+
+  try {
+    let workers = await (await fetch(`${baseUrl}/worker/filter/${specialty}`)).json();
+    let workersSend = formatWork(workers);
+    dispatch(updateStateWorker(workersSend));
+    dispatch(updateLoadingInformation(true));
+
+  }catch(e){
+    console.log(e.message);
+  }
 }
 
 

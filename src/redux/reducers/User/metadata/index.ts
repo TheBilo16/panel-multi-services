@@ -1,8 +1,7 @@
 namespace UserController {
   interface IUser {
     id:number,
-    name:string,
-    lastname:string,
+    fullname:string,
     username:string,
     password:string,
     description:string,

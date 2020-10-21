@@ -25,19 +25,20 @@ const Works = () => {
     <Container> 
       <Title> {workerSelectedData.specialty} </Title>
       <ContainerWorks>
-        {
-          works.map((e,i)=>{
-            return (
-              <WorkDetail key={i}>
-                <TitleWork> Titulo por defecto </TitleWork>
-                <UserWork> {e.username} </UserWork>
-                <DescriptionWork> {e.description} </DescriptionWork>
-                <FechaEmision> 06/10/2020 </FechaEmision>
-                <PriceWork> {e.price} </PriceWork>
-              </WorkDetail>
-            )
-          })
-        }
+        <WorkDetail >
+          <TitleWork> Titulo por defecto </TitleWork>
+          <UserWork> Usuario comun </UserWork>
+          <DescriptionWork> Descripcion basica para un usuario </DescriptionWork>
+          <FechaEmision> 06/10/2020 </FechaEmision>
+          <PriceWork> $15.00 </PriceWork>
+        </WorkDetail>  
+        <WorkDetail >
+          <TitleWork> Titulo por defecto </TitleWork>
+          <UserWork> Usuario comun </UserWork>
+          <DescriptionWork> Descripcion basica para un usuario </DescriptionWork>
+          <FechaEmision> 06/10/2020 </FechaEmision>
+          <PriceWork> $15.00 </PriceWork>
+        </WorkDetail>  
       </ContainerWorks>
     </Container>
   )

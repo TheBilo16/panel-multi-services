@@ -11,7 +11,7 @@ import InformationWorker from './InformationWorker';
 
 //REDUX
 import { useDispatch,useSelector } from 'react-redux';
-import { loadingWorkers } from '../../redux/actions/WorkerActions';
+import { loadingWorkers , findWorkBySpecialty} from '../../redux/actions/WorkerActions';
 
 import { FaPlusCircle } from "react-icons/fa";
 
@@ -27,7 +27,7 @@ const Worker = () => {
   return (
     <Content>
       <Header 
-        onChange={()=>{console.log('FindWorker')}}
+        onChange={ (e)=>{ dispatch(findWorkBySpecialty(e.target.value)) }} 
       />
       <ContentInformation>
         <List />

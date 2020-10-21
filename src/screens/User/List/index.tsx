@@ -13,8 +13,6 @@ import { useSelector } from 'react-redux';
 const List = () => {
 
   const { users , isLoadingInformation } = useSelector( ({user}) => user ) // Usuarios en el store.
-  console.log(users);
-  console.log(isLoadingInformation);  
 
   return (
     <Content>
@@ -37,7 +35,7 @@ const List = () => {
           return (
             <Register border = {br!} margin = '0 0 2px 0' key={i} BODY>
               <Celd> {e.id} </Celd>
-              <Celd> {e.name + ' ' + e.lastname} </Celd>
+              <Celd> {e.fullname} </Celd>
               <Celd> {e.username} </Celd>
               <Celd> <ImageUser src={e.profileImage}/> </Celd>
               <Celd> <button> Convertir en trabajador </button> </Celd>

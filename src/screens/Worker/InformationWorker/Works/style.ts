@@ -4,7 +4,6 @@ const Container = styled.div`
   display:flex;
   width:100%;
   flex-flow:column nowrap;
-
 ` 
 
 const Title = styled.p`
@@ -18,49 +17,64 @@ const Title = styled.p`
 const ContainerWorks = styled.div`
   display:flex;
   width:100%;
-  flex-flow : row wrap;
-
+  flex-flow : row nowrap;
+  justify-content:space-around;
 `
 
 const WorkDetail = styled.div`
-  display:grid;
-  max-height:600px;
+  display:flex;
+  flex-flow:column nowrap;
   background:white;
   border-radius:20px;
   width:47%;
   background:#FAFAFA;
-  padding:15px 15px 0 15px;
 `
 
 //Items works
 const TitleWork = styled.p`
   display:flex;
-  padding:7px;
-  font-size:15px;
+  font-size:17px;
   font-weight:700;
   justify-content:center;
   align-items:center;
+  padding : 15px 15px 5px 15px;
+  margin:5px 0;
 `
+
 const UserWork = styled.p`
   display:flex;
-  height: 20px;
-
+  padding : 5px 15px;
+  font-size:14px;
+  color:585858;
+  font-weight:500;
+  
 `
 const DescriptionWork = styled.p`
   display:flex;
+  padding : 5px 15px;
+  margin:5px 0;
+  color:#8B8B8B;
+  font-size:14px;
 `
 
 const FechaEmision = styled.p`
   display:flex;
+  padding : 5px 15px;
+  margin:5px 0;
+  color:#8B8B8B;
+  font-size:13px;
 `
 
 const PriceWork = styled.div`
   display:flex;
+  width:100%;
   justify-content:center;
-  background:green;
+  background:#F4F4F4;
   border-radius:0 0 20px 20px;
+  color:#1858D4;
+  padding : 10px 15px;
+  font-weight:700;
 `
-
 
 export {
   Container,

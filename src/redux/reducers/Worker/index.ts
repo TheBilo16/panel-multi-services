@@ -12,8 +12,7 @@ const initialState : WorkerController.IWorkers = {
     location : '' ,
     basePrice : 0,
     specialty : '',
-    name : '',
-    lastname : '',
+    fullname:'',
     profileImage : '',
     description:'',
     works:[]

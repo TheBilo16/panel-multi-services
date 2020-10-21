@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {
   Content,
   ItemWorker,
@@ -21,17 +21,29 @@ import {
   updateWorkerSelectedData , 
 } from '../../../redux/actions/WorkerActions';
 
+//MODALS
+import WorkerAddModal from '../../../modals/Worker/workerAddModal';
+
 const List = () => {
 
   const dispatch = useDispatch();
   const { isWorkerSelected , workers , isLoadingInformation } = useSelector( ({worker}) => worker ) ;
+  const [ modalAddState, setModalAddState ] = useState(false);
+
+  // Abrir y cerrar modals
+  const closeModal = () => setModalAddState(false);
+  const openModal = () => setModalAddState(true);
+
 
   return (
     <Content> 
       <TitleList>
         <Text TITLE> Trabajadores </Text>
         <IconTitle>
-          <FaPlus color='blue' size={20} />
+          <FaPlus 
+            color='blue' 
+            size={20} 
+            onClick={openModal} />
         </IconTitle>
       </TitleList>
       { isLoadingInformation ?
@@ -42,7 +54,7 @@ const List = () => {
                 <Image src='https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/09/10/15997483923738.jpg'/>
               </ContentImage> 
               <DescriptionWorker>
-                <Text NAME> {`${worker.name} ${worker.lastname}`} </Text>
+                <Text NAME> {worker.fullname} </Text>
                 <Text> {worker.specialty} </Text>
               </DescriptionWorker>
               {
@@ -69,6 +81,12 @@ const List = () => {
               </Next>
             </ItemWorker> ) 
         }) : null
+      }
+      {/*Modales*/}
+      {
+        modalAddState
+        ? <WorkerAddModal isOpen={modalAddState} handleClose = {closeModal} />
+        : null
       }
     </Content>
   )
