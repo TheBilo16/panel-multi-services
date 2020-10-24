@@ -4,8 +4,6 @@ import ReactModal from 'react-modal';
 const widthIconControl = "50px";
 
 
-
-
 const HeaderModal = styled.div`
   display:flex;
   flex-flow:row nowrap;
@@ -46,10 +44,6 @@ const Controls = styled.div`
   border-radius:10px;
   color:rgb(139,139,139);
   border:none;
-`
-
-const OptionSelect = styled.option`
-
 `
 
 const Icon =  styled.div`

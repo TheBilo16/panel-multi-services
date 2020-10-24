@@ -11,18 +11,12 @@ import InformationWorker from './InformationWorker';
 
 //REDUX
 import { useDispatch,useSelector } from 'react-redux';
-import { loadingWorkers , findWorkBySpecialty} from '../../redux/actions/WorkerActions';
-
-import { FaPlusCircle } from "react-icons/fa";
+import { findWorkBySpecialty} from '../../redux/actions/WorkerActions';
 
 const Worker = () => {
 
-  const { isLoadingInformation , isWorkerSelected } = useSelector( ({worker}) => worker )
   const dispatch = useDispatch();
-
-  useEffect(()=>{
-    if (!isLoadingInformation) dispatch(loadingWorkers())
-  })
+  const { isWorkerSelected } = useSelector( ({worker}) => worker )
 
   return (
     <Content>

@@ -5,11 +5,13 @@ import thunk from 'redux-thunk';
 import authReducer from './reducers/Auth';
 import userReducer from './reducers/User';
 import workerReducer from './reducers/Worker';
+import specialtyReducer from './reducers/Specialty';
 
 const reducers = combineReducers({
   auth : authReducer,
   user : userReducer,
-  worker : workerReducer
+  worker : workerReducer,
+  specialty: specialtyReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunk));

@@ -1,4 +1,4 @@
-import React , { FC , useEffect } from 'react';
+import React , { FC , useEffect , useState } from 'react';
 import ReactDOM from 'react-dom';
 import { nodeModal } from '../configPortal';
 import ReactModal from 'react-modal';
@@ -15,11 +15,13 @@ import {
   GroupControl,
   Icon
 } from './style'
+import Select from '../../components/UIComponents/Select';
 import {BiX} from 'react-icons/bi';
 import {FaUserCircle,FaRegClipboard,FaMapMarkerAlt,FaEuroSign} from 'react-icons/fa';
 
 //REDUX
 import { useDispatch , useSelector } from 'react-redux';
+import { createWorker } from '../../redux/actions/WorkerActions';
 
 interface IWorkerModal {
   isOpen:boolean,
@@ -47,18 +49,48 @@ ReactModal.setAppElement("#root");
 
 const WorkerAddModal : FC<IWorkerModal> = ({ isOpen ,handleClose } ) => {
 
+  const [userId,setUserId] = useState(null);
+  const [specialtyId,setSpecialtyId] = useState(null);
+  const [location,setLocation] = useState(null);
+  const [basePrice,setBasePrice] = useState(null);
 
   const dispatch = useDispatch();
+
   const { users } = useSelector(({user})=> user );
-  console.log(users);
+  const { specialtys } = useSelector(({specialty})=>specialty);
+
+  const formatUserOption = (users) => {
+    return (
+      users.map( e => ({
+        value : e.id,
+        text : e.fullname
+      }))
+    )
+  }
+
+  const formatSpecialtyOption = (specialtys) => {
+    return(
+      specialtys.map(e=>({
+        value:e.id,
+        text:e.name
+      }))
+    )
+  }
 
   useEffect(()=>{
-    console.log("Cargando datos de combo box");
+
   })
 
-  const createWorker = () => {
-
+  const addWorker = () => {
+    const worker = { userId , specialtyId , location , basePrice } 
+    dispatch(createWorker(worker));
   }
+
+  //Setters
+  const changeUserId = (e) => setUserId(e.target.value);
+  const changeSpecialtyId = (e) => setSpecialtyId(e.target.value);
+  const changeUbicacion = (e) => setLocation(e.target.value);
+  const changePrice = (e) => setBasePrice(e.target.value); 
 
   return (
     ReactDOM.createPortal(
@@ -73,34 +105,28 @@ const WorkerAddModal : FC<IWorkerModal> = ({ isOpen ,handleClose } ) => {
             <BiX color="gray" size={20} onClick={handleClose}/>
           </HeaderModal>
           <BodyModal>
-
-            <GroupControl>
-              <Icon> <FaUserCircle color="gray" size={20} /> </Icon>
-              <Controls as = "select">
-                <option> Seleccione al usuario </option>
-              </Controls>
-            </GroupControl>
-            
-
-            <GroupControl>
-              <Icon> <FaRegClipboard color="gray" size={20} /> </Icon>
-              <Controls as = "select">
-                <option> Seleccione una especialidad </option>
-              </Controls>
-            </GroupControl>
-            
-            
+              <Select 
+                Icon ={FaUserCircle}
+                onClick={changeUserId}
+                options={formatUserOption(users)}
+              />
+              <Select 
+                Icon ={FaRegClipboard}
+                onClick={changeSpecialtyId}
+                options={formatSpecialtyOption(specialtys)}
+              />
+     
             <GroupControl>
               <Icon> <FaMapMarkerAlt color="gray" size={20} /> </Icon>
-              <Controls as = "input" placeholder="ubicacion"/>
+              <Controls as = "input" placeholder="ubicacion" onClick={changeUbicacion}/>
             </GroupControl>
             <GroupControl>
               <Icon> <FaEuroSign color="gray" size={20} /> </Icon>
-              <Controls as = "input" placeholder="precio base"/>
+              <Controls as = "input" placeholder="precio base" onClick={changePrice}/>
             </GroupControl>
           </BodyModal>
           <FooterModal>
-            <Button onClick={createWorker}> Crear nuevo trabajador </Button>
+            <Button onClick={addWorker}> Crear nuevo trabajador </Button>
           </FooterModal>
         </ReactModal>
       )

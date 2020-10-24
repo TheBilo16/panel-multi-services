@@ -19,17 +19,15 @@ import { FaStar } from 'react-icons/fa';
 
 //REDUX 
 import { useDispatch , useSelector } from 'react-redux';
-import {  } from '../../../../redux/actions/WorkerActions';
 
 const Description = () => {
 
-  const dispatch = useDispatch();
   const { workerSelectedData } = useSelector(({worker})=>worker);
- 
+
   return (
     <Content> 
       <ContentImage>
-        <Image src='https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/09/10/15997483923738.jpg'/>
+        <Image src={workerSelectedData.profileImage}/>
       </ContentImage> 
       <Name> {workerSelectedData.fullname}  </Name>
       <ContentPuntuacion>

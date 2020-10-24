@@ -12,13 +12,6 @@ import List from './List';
 const User = () => {
 
   const dispatch = useDispatch();
-  const { isLoadingInformation } = useSelector( ({user}) => user )
-  
-  // 
-
-  useEffect(()=>{
-    if (!isLoadingInformation) dispatch(loadingInformationUser()) //Cargar datos y actualizar estado a true.
-  })
 
   return (
     <Content>

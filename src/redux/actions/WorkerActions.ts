@@ -97,9 +97,12 @@ export const findWorkBySpecialty = (specialty:string) => async (dispatch) => {
 
   if (!specialty){ dispatch(loadingWorkers());return; }
 
+  
   try {
-    let workers = await (await fetch(`${baseUrl}/worker/filter/${specialty}`)).json();
-    let workersSend = formatWork(workers);
+    const config = configFetch('POST',{specialty} );
+    let workers = await (await fetch(`${baseUrl}/worker/filter`,config)).json();
+    let workersSend = formatWorkers(workers);
+    console.log(workersSend);
     dispatch(updateStateWorker(workersSend));
     dispatch(updateLoadingInformation(true));
 
@@ -108,5 +111,15 @@ export const findWorkBySpecialty = (specialty:string) => async (dispatch) => {
   }
 }
 
+export const createWorker = (worker) => async(dispatch) => {
+  const config = configFetch('post',worker);
+  try{
+    const response = await (await fetch(`${baseUrl}/worker/add`,config)).json();
+    console.log(response);
+    dispatch(loadingWorkers());
+  }catch(e){
+    console.log(e.message);
+  }
+}
 
 export default TYPES;

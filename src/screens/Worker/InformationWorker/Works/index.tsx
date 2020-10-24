@@ -14,7 +14,6 @@ import {
 
 //REDUX
 import {useDispatch,useSelector} from 'react-redux';
-import {} from '../../../../redux/actions/WorkerActions';
 
 const Works = () => {
 
@@ -25,20 +24,17 @@ const Works = () => {
     <Container> 
       <Title> {workerSelectedData.specialty} </Title>
       <ContainerWorks>
-        <WorkDetail >
-          <TitleWork> Titulo por defecto </TitleWork>
-          <UserWork> Usuario comun </UserWork>
-          <DescriptionWork> Descripcion basica para un usuario </DescriptionWork>
-          <FechaEmision> 06/10/2020 </FechaEmision>
-          <PriceWork> $15.00 </PriceWork>
-        </WorkDetail>  
-        <WorkDetail >
-          <TitleWork> Titulo por defecto </TitleWork>
-          <UserWork> Usuario comun </UserWork>
-          <DescriptionWork> Descripcion basica para un usuario </DescriptionWork>
-          <FechaEmision> 06/10/2020 </FechaEmision>
-          <PriceWork> $15.00 </PriceWork>
-        </WorkDetail>  
+        {
+          works.map((work,i)=>{
+            return <WorkDetail key={i}>
+              <TitleWork>{work.fullname}</TitleWork>
+              <UserWork> {work.descriptionUser} </UserWork>
+              <DescriptionWork> {work.description} </DescriptionWork>
+              <FechaEmision> 06/10/2020 </FechaEmision>
+              <PriceWork> {work.price} </PriceWork>
+            </WorkDetail>
+          })
+        }
       </ContainerWorks>
     </Container>
   )

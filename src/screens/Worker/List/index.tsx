@@ -51,7 +51,7 @@ const List = () => {
           return (
             <ItemWorker key={i}>
               <ContentImage>
-                <Image src='https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/09/10/15997483923738.jpg'/>
+                <Image src={worker.profileImage}/>
               </ContentImage> 
               <DescriptionWorker>
                 <Text NAME> {worker.fullname} </Text>
@@ -67,15 +67,15 @@ const List = () => {
                   <Star> <FaStar color='blue' size={15} /> </Star>
                   <Star> <FaStar color='blue' size={15} /> </Star>
                 </Puntuacion> 
-                : <Puntuacion HIDDEN></Puntuacion>
+                : <></>
               }
 
               <Next> 
                 <FaAngleRight color='gray' size={18} 
                   onClick={ () => { 
                     //Implementar este action para que sea solo 1 
-                    dispatch(updateWorkerSelected(true)) 
                     dispatch(updateWorkerSelectedData(worker))
+                    dispatch(updateWorkerSelected(true)) 
                   } }
                 /> 
               </Next>
