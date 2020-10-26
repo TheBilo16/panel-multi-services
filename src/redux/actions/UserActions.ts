@@ -17,7 +17,7 @@ const configFetch = (method:string,body:object) => ({
 })
 
 const formatUsers = (users) => {
-  let usersSend : [object] = users.map((user,i)=>{
+  let usersSend = users.map( user => {
       return ({
         id : user.id,
         fullname : user.fullname,
@@ -46,18 +46,27 @@ export const changeLoadingInformation = (payload : boolean) => ({
 
 // ACTIONS THUNKS
 
-export const findByUserName = (name:string) => async dispatch => {
+export const findByUserName = (fullname:string) => async dispatch => {
 
-    if (!name) { dispatch(loadingInformationUser()); return } 
+    try {
+      if (!fullname) { dispatch(loadingInformationUser()); return } 
 
-    let config = configFetch('post',{name});
-    const users = await (await fetch(`${baseUrl}/user/filter`,config)).json()
+      let config = configFetch('post',{fullname});
+      const users = await (await fetch(`${baseUrl}/user/filter`,config)).json()
 
-    if (users.length > 0) {
-      let usersSend = formatUsers(users);
-      dispatch(updateStateUser(usersSend))
-      console.log(usersSend);
+      if (users.length > 0) {
+        console.log(users);
+        let usersSend = formatUsers(users);
+        dispatch(updateStateUser(usersSend))
+        console.log(usersSend);
+      } else {
+        
+      } 
+
+    }catch(e){
+      console.log(e.message);
     }
+    
 }
 
 export const loadingInformationUser = () => async dispatch => {

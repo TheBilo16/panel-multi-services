@@ -58,6 +58,31 @@ const WorkerAddModal : FC<IWorkerModal> = ({ isOpen ,handleClose } ) => {
 
   const { users } = useSelector(({user})=> user );
   const { specialtys } = useSelector(({specialty})=>specialty);
+  const { workers } = useSelector(({worker})=>worker);
+
+
+  //Retorna los usuarios con trabajos.
+  const filterUsersWithoutWork = ( users ) => {
+    let users_ = users.slice(0);
+    let sizeWorkers = workers.length;
+    let usersWithoutWork : Array<object> = [];
+    //Menudo chamuyo para un filtro xD
+    users_.map(e=>{
+      let p = 0;
+      for(let i=0;i<sizeWorkers;i++){
+        if( e.fullname != workers[i].fullname ){
+          p++;
+          if (p==sizeWorkers) usersWithoutWork.push(e);
+        } else {
+          return;
+        }
+      }
+
+    })
+    console.log(workers);
+    return usersWithoutWork;
+  }
+
 
   const formatUserOption = (users) => {
     return (
@@ -108,7 +133,7 @@ const WorkerAddModal : FC<IWorkerModal> = ({ isOpen ,handleClose } ) => {
               <Select 
                 Icon ={FaUserCircle}
                 onClick={changeUserId}
-                options={formatUserOption(users)}
+                options={formatUserOption(filterUsersWithoutWork(users))}
               />
               <Select 
                 Icon ={FaRegClipboard}

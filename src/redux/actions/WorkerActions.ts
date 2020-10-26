@@ -38,7 +38,6 @@ const formatWorkers = workers => {
     return ({
       id : e.id,
       availability: e.availability,
-      location:e.location,
       basePrice : e.basePrice,
       specialty : e.specialty.name,
       fullname: e.user.fullname,
@@ -86,7 +85,7 @@ export const updateWorks = payload => ({
 // ACTIONS THUNKS
 export const loadingWorkers = () => async dispatch => {
   try {
-    const workers = await (await fetch(`${baseUrl}/worker`)).json();
+    const workers = await (await fetch(`${baseUrl}/worker`)).json(); 
     const workersSend = formatWorkers(workers);
     dispatch(updateStateWorker(workersSend));
     dispatch(updateLoadingInformation(true));
@@ -102,7 +101,6 @@ export const findWorkBySpecialty = (specialty:string) => async (dispatch) => {
     const config = configFetch('POST',{specialty} );
     let workers = await (await fetch(`${baseUrl}/worker/filter`,config)).json();
     let workersSend = formatWorkers(workers);
-    console.log(workersSend);
     dispatch(updateStateWorker(workersSend));
     dispatch(updateLoadingInformation(true));
 
@@ -115,7 +113,6 @@ export const createWorker = (worker) => async(dispatch) => {
   const config = configFetch('post',worker);
   try{
     const response = await (await fetch(`${baseUrl}/worker/add`,config)).json();
-    console.log(response);
     dispatch(loadingWorkers());
   }catch(e){
     console.log(e.message);

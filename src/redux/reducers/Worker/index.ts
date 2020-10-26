@@ -9,7 +9,6 @@ const initialState : WorkerController.IWorkers = {
   workerSelectedData : {
     id : 0,
     availability : '',
-    location : '' ,
     basePrice : 0,
     specialty : '',
     fullname:'',

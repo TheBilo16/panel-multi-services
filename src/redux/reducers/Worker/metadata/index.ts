@@ -12,7 +12,6 @@ namespace WorkerController {
   interface IWorker {
     id : number,
     availability : string,
-    location : string , //En ver
     basePrice : number,
     specialty : string,
     fullname:string,
