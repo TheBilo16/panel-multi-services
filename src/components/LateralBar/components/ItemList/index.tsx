@@ -13,7 +13,7 @@ const ItemList = () => {
         <Item
           key={i}
           title={v.title} 
-          icon={v.icon} 
+          Icon={v.Icon} 
           link={v.link}
           isSelected={v.link === location.pathname}
         /> 

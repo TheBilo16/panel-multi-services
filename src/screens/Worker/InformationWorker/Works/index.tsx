@@ -13,7 +13,7 @@ import {
 } from './style';
 
 //REDUX
-import {useDispatch,useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const Works = () => {
 

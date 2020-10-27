@@ -1,4 +1,4 @@
-import React , {useState,useEffect} from 'react';
+import React from 'react';
 import { 
   Content,
   Title,
@@ -29,8 +29,8 @@ const List = () => {
         users.map( (e,i) => {
           var br:string;
 
-          if ( i==0 ) br = '20px 20px 0 0 '
-          else if ( i == (users.length-1) ) br = '0 0 20px 20px' 
+          if ( i===0 ) br = '20px 20px 0 0 '
+          else if ( i === (users.length-1) ) br = '0 0 20px 20px' 
 
           return (
             <Register border = {br!} margin = '0 0 2px 0' key={i} BODY>

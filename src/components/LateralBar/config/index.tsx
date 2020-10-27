@@ -10,27 +10,27 @@ import {
 const linkConfiguration: NSLateralBar.Link[] = [
   {
     title: "Dashboard",
-    icon: BsBarChart,
+    Icon: BsBarChart,
     link: "/",
   },
   {
     title: "Usuarios",
-    icon: BsPeople,
+    Icon: BsPeople,
     link: "/user",
   },
   {
     title: "Trabajadores",
-    icon: BsPerson,
+    Icon: BsPerson,
     link: "/worker",
   },
   {
     title: "Especialidades",
-    icon: BsBriefcase,
+    Icon: BsBriefcase,
     link: "/specialty",
   },
   {
     title: "Correos",
-    icon: BsEnvelope,
+    Icon: BsEnvelope,
     link: "/email",
   },
 ];

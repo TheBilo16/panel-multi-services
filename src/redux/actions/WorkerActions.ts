@@ -112,7 +112,7 @@ export const findWorkBySpecialty = (specialty:string) => async (dispatch) => {
 export const createWorker = (worker) => async(dispatch) => {
   const config = configFetch('post',worker);
   try{
-    const response = await (await fetch(`${baseUrl}/worker/add`,config)).json();
+    await (await fetch(`${baseUrl}/worker/add`,config)).json();
     dispatch(loadingWorkers());
   }catch(e){
     console.log(e.message);

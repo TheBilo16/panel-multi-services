@@ -18,7 +18,7 @@ import {
 import { FaStar } from 'react-icons/fa';
 
 //REDUX 
-import { useDispatch , useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Description = () => {
 
@@ -40,7 +40,7 @@ const Description = () => {
         </Puntuacion>
       </ContentPuntuacion> 
       <Information> 
-        {  workerSelectedData.description != undefined ?
+        {  workerSelectedData.description !== undefined ?
           workerSelectedData.description : "Not a description defined" } 
       </Information>
       <ExtraInformation>

@@ -1,9 +1,10 @@
 import { IconType } from "react-icons/lib";
 
 namespace NSLateralBar {
+
   export interface Link {
     title : string;
-    icon : IconType;
+    Icon : IconType;
     link : string;
   }
 

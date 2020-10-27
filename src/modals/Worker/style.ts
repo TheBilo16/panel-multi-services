@@ -1,8 +1,6 @@
-import styled ,{ css } from 'styled-components';
-import ReactModal from 'react-modal';
+import styled from 'styled-components';
 
 const widthIconControl = "50px";
-
 
 const HeaderModal = styled.div`
   display:flex;

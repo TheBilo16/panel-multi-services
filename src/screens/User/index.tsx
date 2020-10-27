@@ -1,9 +1,9 @@
-import React , {useEffect} from 'react';
+import React from 'react';
 import { Content } from './style';
 
 //REDUX
-import { useDispatch , useSelector } from 'react-redux';
-import { loadingInformationUser , findByUserName } from '../../redux/actions/UserActions';
+import { useDispatch  } from 'react-redux';
+import { findByUserName } from '../../redux/actions/UserActions';
 
 //Components 
 import Header from '../../components/header';

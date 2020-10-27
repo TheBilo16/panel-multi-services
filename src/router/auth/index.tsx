@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import DashBoard from "../../screens/Dashboard";
 import Worker from "../../screens/Worker";
 import User from '../../screens/User';
+import Specialty from '../../screens/Specialty';
 
 //Components
 import LateralBar from "../../components/LateralBar";
@@ -19,6 +20,7 @@ const RouterAuth = () => (
         <Route exact path="/" component={DashBoard} />
         <Route path="/worker" component={Worker} />
         <Route path='/user' component={User} />
+        <Route path='/specialty' component={Specialty} />
       </Switch>
     </RouterStyles.OverflowContainer>
   </RouterStyles.Container>
