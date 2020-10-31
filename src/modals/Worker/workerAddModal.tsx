@@ -139,7 +139,7 @@ const WorkerAddModal : FC<IWorkerModal> = ({ isOpen ,handleClose } ) => {
             </GroupControl>
             <GroupControl>
               <Icon> <FaEuroSign color="gray" size={20} /> </Icon>
-              <Controls as = "input" placeholder="precio base" onClick={changePrice}/>
+              <Controls as = "input" placeholder="precio base" onClick={changePrice} type="number"/>
             </GroupControl>
           </BodyModal>
           <FooterModal>

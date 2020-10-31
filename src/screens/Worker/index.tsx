@@ -11,12 +11,14 @@ import InformationWorker from './InformationWorker';
 
 //REDUX
 import { useDispatch,useSelector } from 'react-redux';
-import { findWorkBySpecialty} from '../../redux/actions/WorkerActions';
+import { findWorkBySpecialty } from '../../redux/actions/WorkerActions';
+import { loadingInformationUser } from '../../redux/actions/UserActions';
 
 const Worker = () => {
 
   const dispatch = useDispatch();
   const { isWorkerSelected } = useSelector( ({worker}) => worker )
+  dispatch(loadingInformationUser());  
 
   return (
     <Content>

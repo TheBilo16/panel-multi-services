@@ -1,68 +1,122 @@
-import { useState  } from 'react';
+import { useEffect, useState  } from 'react';
 
 //REDUX
 import { useDispatch , useSelector } from 'react-redux';
-import {  } from '../redux/actions/SpecialtyActions';
+import { createSpecialty,updateSpecialty,deleteSpecialty ,loadingInformationSpecialty} from '../redux/actions/SpecialtyActions';
 
 interface ISpecialty {
-  id?:number,
+  id:number,
   name:string,
   image:string
+}
+
+
+interface IMessageShow {
+  text : string,
+  fondo : string
 }
 
 type optionModal = 'add'| 'delete'|'update';
 
 const SpecialtyHook = () => {
+
   const { specialtys } = useSelector(({specialty}) => specialty);
+  const specialtysI = specialtys.slice();
   const dispatch = useDispatch();
+  
+  useEffect(()=>{
+
+  })
+
   //STATES
-  const [existSpecialty,setExistSpecialty] = useState(false);
 
-  const [ isOpenAddModal , setOpenModalAdd ] = useState(false);
-  const [ isOpenModalEdit , setOpenModalEdit ] = useState(false);
-  const [ isOpenModalDelete , setOpenModalDelete ] = useState(false);
+  const [ messageShow,setMessageShow] = useState<IMessageShow>({text:'',fondo:''}); 
 
-  const [ nameSelect , setNameSelect ] = useState('');
-  const [ imageSelect , setImageSelect ] = useState('');
+  const [ isOpenAddModal , setOpenModalAdd ] = useState<boolean>(false);
+  const [ isOpenModalEdit , setOpenModalEdit ] = useState<boolean>(false);
+  const [ isOpenModalDelete , setOpenModalDelete ] = useState<boolean>(false);
 
+  const [ nameSelect , setNameSelect ] = useState<string>('');
+  const [ imageSelect , setImageSelect ] = useState<string>('');
+  const [ idSelect , setIdSelect ] = useState<number>(0);
 
-  const createSpecialty = (specialty:ISpecialty) => {
-    specialtys.map( e => {
-      if(e.name==specialty.name){
-        setExistSpecialty(true);
-        return;
+  const [ passInformation , setPassInformation ] = useState<any>();
+
+  useEffect(()=>{
+
+  })
+
+  const clearInputs = () => {
+    setNameSelect('');
+    setImageSelect('');
+    setMessageShow({text:'',fondo:''});
+  }
+
+  //#region CRUD PARA ESPECIALIDAD.
+  const addSpecialty = () => {
+    if ( nameSelect && imageSelect ){
+      let specialtys_ = {
+        name : nameSelect,
+        image : imageSelect
       }
+      let size = specialtysI.length;
+      let existS:boolean;
 
-    })
-    //Comprobar si ya existe la especialidad por nombre
-    //Agregar si no existe
-    //Enviar mensaje de error si no.
-  }
-  const updateSpecialty = (specialty:ISpecialty) => {
+      specialtysI.forEach( (e,i) => {
+        if( e.name == specialtys_.name ){
+          existS=true;
+          setMessageShow({
+            text : 'Ya existe esta especialidad,intente con otra',
+            fondo : '#d32f2f'
+          });
+          return;
+        }
+        else if( (i == (size-1)) && (!existS) ){
+          clearInputs();
+          dispatch(createSpecialty(specialtys_));
+          setMessageShow({
+            text : 'Especialidad creada',
+            fondo : '#8bc34a'
+          });
+        }
+      });
+
+    } else {
+      setMessageShow({
+        text : 'Rellene todos los campos',
+        fondo : '#fdd835'
+      });
+    }
+    
 
   }
-  const deleteSpecialty = (id:number) => {
-    //Crear modal.
-    //Abrir modal.
-    //Si responde si , se elimina , si responde no , no realiza ningun cambio.
-
+  const updateSpecialty = () => {
+    if(nameSelect&&imageSelect&&idSelect){
+      
+    }
   }
+  const dropSpecialty = (id:number) => {
+    dispatch(deleteSpecialty(id));
+    alert('Elemento eliminado');
+  }
+
+  //#endregion
+
+
 
   //CONFIGS 
-  const formatToOptionsSelect = () => {
-    let specialtys_ = specialtys.splice(0);
-    return specialtys_.map( e => ({
-      value : specialtys_.id,
-      text : specialtys_.name
-    }))
-
-  }
 
 
   //UPDATE STATES
-  const changeExistSpecialty = () => setExistSpecialty(false);
   const changeNameSelect = (value:string) => setNameSelect(value);
-  const changeImageSelect = (e) => setImageSelect(e);
+  const changeIdSpecialty = (value:number) => setIdSelect(value);
+  const changePassInformation = (value:any) => setPassInformation(value);
+
+  const changeImageSelect = (e) => {
+    let image = e.target.files[0];
+    let name = URL.createObjectURL(image);
+    setImageSelect(name)
+  }
 
   const changeStateModal = (modal : optionModal ,value:boolean) => {
     switch(modal){
@@ -74,22 +128,27 @@ const SpecialtyHook = () => {
     
   }
 
+  const loadingSpecialty = () => dispatch(loadingInformationSpecialty());
 
   const values = {
-    specialtys,
-    existSpecialty,
+    specialtysI,
+    messageShow,
     isOpenAddModal,
     isOpenModalEdit,
     isOpenModalDelete,
     nameSelect,
     imageSelect,
-    changeExistSpecialty,
+    idSelect,
+    passInformation,
     changeStateModal,
-    createSpecialty,
+    addSpecialty,
     updateSpecialty,
-    formatToOptionsSelect,
+    dropSpecialty,
     changeNameSelect,
-    changeImageSelect
+    changeImageSelect,
+    changeIdSpecialty,
+    changePassInformation,
+    loadingSpecialty
   }
 
   return values
