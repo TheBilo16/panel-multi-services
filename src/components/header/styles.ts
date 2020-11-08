@@ -1,70 +1,60 @@
 import styled from 'styled-components';
-import { widthIconSearch , widthFind , border } from './config';
 
-//Content Global
-const Content = styled.div`
-  display:grid;
-  grid-template-columns : 60% 30%;
-  grid-template-rows : 50px;
-  justify-content:space-between;
-  
-`
 
-//Input Search
-const Search = styled.div`
-  width:100%;
-  position:relative;
-`
+const widthIconSearch = '50px';
+const widthFind = "40px";
+const border = '20px';
 
-const IconSearch = styled.div`
-  width : ${widthIconSearch};
-  height : ${widthFind};
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:absolute;
-`
-
-const Input = styled.input`
-  width:100%;
-  height:${widthFind};
-  padding-left:${widthIconSearch};
-  border-radius:${border};
-`
-
-//Date
-const ContentDate = styled.div`
-  display:flex;
-  justify-content:center;
-  width:100%;
-  height:${widthFind};
-  border-radius : ${border};
-  color:gray;
-  background:white;
-`
-
-const Text = styled.p`
-  width:70%;
-  height:${widthFind};
-  display:flex;
-  flex-flow:row no-wrap;
-  align-items:center;
-`
-
-const IconDate = styled.div`
-  width:${widthIconSearch};
-  height:${widthFind};
-  display:flex;
-  justify-content:center;
-  align-items:center;
-`
-
-export {
-  Content,
-  Search,
-  IconSearch,
-  Input,
-  ContentDate,
-  Text,
-  IconDate
+const HeaderStyles = {
+  content : styled.div`
+    display:grid;
+    grid-template-columns : max-content max-content;
+    grid-template-rows : 50px;
+    justify-content:space-between;  
+  `,
+  search : styled.div`
+    min-width:max-content;
+    position:relative;
+    margin:0 10px 0 0;
+  `,
+  iconSearch : styled.div`
+    width : ${widthIconSearch};
+    height : ${widthFind};
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+  `,
+  input : styled.input`
+    width:450px;
+    height:${widthFind};
+    padding-left:${widthIconSearch};
+    border-radius:${border};
+  `,
+  date : styled.div`
+    display:flex;
+    justify-content:center;
+    min-width:max-content;
+    height:${widthFind};
+    border-radius : ${border};
+    color:gray;
+    background:white;
+  `,
+  text : styled.p`
+    width:max-content;
+    height:${widthFind};
+    display:flex;
+    align-items:center;
+    white-space:nowrap;
+    padding:0 15px 0 0;
+  `,
+  iconDate : styled.div`
+    width:${widthIconSearch};
+    height:${widthFind};
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  `
 }
+
+export default HeaderStyles;

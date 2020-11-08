@@ -15,7 +15,8 @@ const initialState : WorkerController.IWorkers = {
     profileImage : '',
     description:'',
     works:[]
-  }
+  },
+  isModalAddOpen : false
 }
 
 const reducer = ( state = initialState , action ) => {
@@ -45,6 +46,10 @@ const reducer = ( state = initialState , action ) => {
         ...state,
         workerSelectedData : action.payload
       })
+    case TYPES.UPDATE_MODAL_ADD_STATE : return({
+      ...state,
+      isModalAddOpen : action.payload
+    })
     default : 
       return state;
   }

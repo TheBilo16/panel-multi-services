@@ -32,7 +32,7 @@ const linkConfiguration: NSLateralBar.Link[] = [
     title: "Correos",
     Icon: BsEnvelope,
     link: "/email",
-  },
+  }
 ];
 
 export default linkConfiguration;

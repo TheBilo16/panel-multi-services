@@ -3,7 +3,7 @@ import UserController from './metadata';
 
 const initialState : UserController.IUsers = {
   users : [] ,
-  isLoadingInformation : false
+  isLoadingInformationUser : false
 }
 
 
@@ -17,7 +17,7 @@ const reducer = (state=initialState,action) => {
     case TYPES.CHANGE_LOADING_INFORMATION : 
       return ({
         ...state,
-        isLoadingInformation : action.payload
+        isLoadingInformationUser : action.payload
       })
     default : return state
 

@@ -10,7 +10,7 @@ namespace UserController {
   }
   export interface IUsers {
     users : Array<IUser>,
-    isLoadingInformation : boolean
+    isLoadingInformationUser : boolean
   }
 }
 

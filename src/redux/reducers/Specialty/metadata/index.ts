@@ -6,7 +6,8 @@ namespace ControllerSpecialty {
   }
   export interface ISpecialtys {
     specialtys:Array<ISpecialty>,
-    loadingInformation:boolean
+    loadingInformation:boolean,
+    specialtySelectedData : ISpecialty
   }
 }
 

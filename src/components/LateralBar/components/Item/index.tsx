@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import IStyles from './styles';
 
 const Item : FC<NSLateralBar.ItemProps> = ({ title , Icon , link , isSelected  }) => {
-  return <IStyles.Container isSelected={isSelected} as={Link} to={link} >
+  return <IStyles.Container as={Link} to={link}>
     <IStyles.ContainerIcon>
-      {/* <IStyles.Icon>{icon()}</IStyles.Icon> */}
       <IStyles.Icon>
         <Icon />
       </IStyles.Icon>

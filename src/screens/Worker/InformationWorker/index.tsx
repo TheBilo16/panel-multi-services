@@ -14,21 +14,26 @@ import { updateOptionSelectedWorker } from '../../../redux/actions/WorkerActions
 import Description from './Description';
 import Works from './Works';
 
+//HOOKS
+import useWorkerHook from '../../../Hooks/Worker/workerHook';
+
 const InformationWorkers = () => {
 
-  const dispatch = useDispatch();
-  const { optionSelectedWorker } = useSelector( ({worker}) => worker )
+  const {
+    optionSelectedWorker,
+    changeOptionSelectedWorker
+  } = useWorkerHook();
 
   return (
     <Content> 
       <Options>
         <Option 
           LEFT 
-          onClick={()=>{ dispatch(updateOptionSelectedWorker('Description')) }}
+          onClick={()=>{ changeOptionSelectedWorker('Description') }}
         > Descripcion </Option>
         <Option 
           RIGHT 
-          onClick={()=>{ dispatch(updateOptionSelectedWorker('Work')) }}
+          onClick={()=>{ changeOptionSelectedWorker('Work') }}
         > Trabajos </Option>
       </Options>
       <Information>

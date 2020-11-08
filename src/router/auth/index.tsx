@@ -6,6 +6,7 @@ import DashBoard from "../../screens/Dashboard";
 import Worker from "../../screens/Worker";
 import User from '../../screens/User';
 import Specialty from '../../screens/Specialty';
+import Curriculum from '../../screens/Curriculum';
 
 //Components
 import LateralBar from "../../components/LateralBar";
@@ -17,10 +18,11 @@ const RouterAuth = () => (
     <LateralBar />
     <RouterStyles.OverflowContainer>
       <Switch>
+        <Route exact path="/worker" component={Worker} />
+        <Route exact path='/user' component={User} />
+        <Route exact path='/specialty' component={Specialty} />
+        <Route exact path='/email' component={Curriculum} />
         <Route exact path="/" component={DashBoard} />
-        <Route path="/worker" component={Worker} />
-        <Route path='/user' component={User} />
-        <Route path='/specialty' component={Specialty} />
       </Switch>
     </RouterStyles.OverflowContainer>
   </RouterStyles.Container>

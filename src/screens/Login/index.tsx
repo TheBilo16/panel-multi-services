@@ -1,86 +1,49 @@
-import React , { useRef } from "react";
-import {
-  Title,
-  Div,
-  Container,
-  DivInputsType,
-  DivButton,
-  Icon,
-  Stldiv,
-  Stlform,
-} from "./styles";
+import React from "react";
+
+//DESIGN
+import UserStyles from "./styles";
 import { FaUser, FaLock } from "react-icons/fa";
 
-//
-import { baseUrl } from '../../config';
-
-//REDUX
-import { useDispatch } from 'react-redux';
-import { updateAuthenticationState } from '../../redux/actions/AuthActions';
+//HOOKS
+import useLoginHook from '../../Hooks/Login/LoginHook';
 
 const Login = () => {
 
-  const username : any = useRef();
-  const password : any = useRef();
-  const dispatch = useDispatch();
+  const {
+    authentication
+  } = useLoginHook();
 
-  const autentication = async () => {
-
-    const data = { 
-      username : username.current.value,
-      password : password.current.value
-    }
-
-    const config = {
-      method : 'POST',
-      body : JSON.stringify(data),
-      headers : {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    const { token } = await (await fetch(`${baseUrl}/auth/login`, config )).json();
-
-    if (token){
-      dispatch(updateAuthenticationState(true))
-      saveToken(token)
-    } else console.log('El correo o la contrase es incorrecta')
-  }
-
-  const saveToken = (token) => localStorage.setItem('token',token)
   return (
-    <Div>
-      <Container>
-        <Title>Multi Servicios</Title>
+    <UserStyles.div>
+      <UserStyles.container>
+        <UserStyles.title>Multi Servicios</UserStyles.title>
 
-        <Stlform >
-          <Stldiv>
-            <Icon>
+        <UserStyles.stlform encType='multipart/form-data' onSubmit={authentication}>
+          <UserStyles.stldiv>
+            <UserStyles.icon>
               <FaUser />
-            </Icon>
-            <DivInputsType 
-              name="user" 
+            </UserStyles.icon>
+            <UserStyles.divInputsType 
               type="text" 
-              placeholder="Username..." 
-              ref={username}
+              placeholder="Username..."
+              name = 'username' 
             />
-          </Stldiv>
+          </UserStyles.stldiv>
 
-          <Stldiv>
-            <Icon>
+          <UserStyles.stldiv>
+            <UserStyles.icon>
               <FaLock />
-            </Icon>
-            <DivInputsType
-              name="clave"
+            </UserStyles.icon>
+            <UserStyles.divInputsType
               type="password"
               placeholder="Password..."
-              ref={password}
+              name = 'password'
             />
-          </Stldiv>
-          <DivButton type="button" onClick={autentication} > Iniciar Sesión </DivButton>
-        </Stlform>
-      </Container>
-    </Div>
+          </UserStyles.stldiv>
+          <UserStyles.divButton as = 'input' type="submit" value='Iniciar Session' />
+        </UserStyles.stlform>
+      </UserStyles.container>
+    </UserStyles.div>
   );
 };
 

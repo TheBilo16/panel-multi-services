@@ -1,15 +1,12 @@
 import React ,{ FC } from 'react';
 import ReactModal from 'react-modal';
 import { createPortal } from "react-dom";
-import { nodeModal } from './configPortal';
 
-export interface IModalBase {
+const nodeModal = document.getElementById("modal");
+
+export interface IModal {
   isOpen: Boolean,
   handleClose():void
-}
-
-export interface IModal extends IModalBase {
-  extraInformation?:any
 }
 
 const overlayStyle = {
@@ -24,13 +21,9 @@ const contentStyle = {
   border:"none"
 }
 
+ReactModal.setAppElement("#root");
 
-
-
-const Modal : FC<IModalBase> = ({isOpen,handleClose,children}) => {
-  
-  ReactModal.setAppElement("#root");
-  
+const Modal : FC<IModal> = ({isOpen,handleClose,children}) => {  
   return (
     createPortal((
       <ReactModal

@@ -1,4 +1,4 @@
-import { baseUrl } from '../../config';
+import { baseUrl , user_image_default_route } from '../../config';
 
 const TYPES = {
   UPDATE_STATE_USER : 'update-state-user',
@@ -18,12 +18,12 @@ const configFetch = (method:string,body:object) => ({
 
 const formatUsers = (users) => {
   let usersSend = users.map( user => {
-      return ({
+    return ({
         id : user.id,
         fullname : user.fullname,
         username : user.username,
         password : user.password,
-        profileImage : user.profileImage,
+        profileImage : user.profileImage||user_image_default_route,
         district : user.district.name
       })
     })
@@ -49,16 +49,16 @@ export const changeLoadingInformation = (payload : boolean) => ({
 export const findByUserName = (fullname:string) => async dispatch => {
 
     try {
-      if (!fullname) { dispatch(loadingInformationUser()); return } 
-
+      if (!fullname) { 
+        dispatch(loadingInformationUser()); 
+        return;
+      } 
       let config = configFetch('post',{fullname});
-      const users = await (await fetch(`${baseUrl}/user/filter`,config)).json()
-
+      const users = await (await fetch(`${baseUrl}/user/filterByName`,config)).json()
       if (users.length > 0) {
-        console.log(users);
+        console.log('buscando')
         let usersSend = formatUsers(users);
         dispatch(updateStateUser(usersSend))
-        console.log(usersSend);
       } else {
         
       } 

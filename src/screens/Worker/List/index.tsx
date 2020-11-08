@@ -14,25 +14,31 @@ import {
 } from './style'
 import { FaStar , FaAngleRight , FaPlus } from 'react-icons/fa';
 
-//REDUX
-import { useSelector , useDispatch } from 'react-redux';
-import { 
-  updateWorkerSelected , 
-  updateWorkerSelectedData , 
-} from '../../../redux/actions/WorkerActions';
+
+//HOOKS
+import useWorkerHook from '../../../Hooks/Worker/workerHook';
+import useUserHook from '../../../Hooks/User/userHook';
 
 //MODALS
 import WorkerAddModal from '../../../modals/Worker/workerAddModal';
 
+
 const List = () => {
 
-  const dispatch = useDispatch();
-  const { isWorkerSelected , workers , isLoadingInformation } = useSelector( ({worker}) => worker ) ;
-  const [ modalAddState, setModalAddState ] = useState(false);
+  const { 
+    isLoadingInformation,
+    workers,
+    isWorkerSelected,
+    isModalAddOpen,
+    updateSelectedData,
+    changeWorkerSelectedState,
+    closeModalAdd,
+    openModalAdd
+  } = useWorkerHook();
 
-  // Abrir y cerrar modals
-  const closeModal = () => setModalAddState(false);
-  const openModal = () => setModalAddState(true);
+  const {
+    loadingUsers
+  } = useUserHook();
 
 
   return (
@@ -43,7 +49,10 @@ const List = () => {
           <FaPlus 
             color='blue' 
             size={20} 
-            onClick={openModal} />
+            onClick={()=>{
+              openModalAdd();
+              loadingUsers();
+            }} />
         </IconTitle>
       </TitleList>
       { isLoadingInformation ?
@@ -57,37 +66,30 @@ const List = () => {
                 <Text NAME> {worker.fullname} </Text>
                 <Text> {worker.specialty} </Text>
               </DescriptionWorker>
-              {
+              
+              {/* {
                 !isWorkerSelected ?
                 <Puntuacion>
-                  {/* Configurar en base a la puntuacion */}
                   <Star> <FaStar color='blue' size={15} /> </Star>
                   <Star> <FaStar color='blue' size={15} /> </Star>
                   <Star> <FaStar color='blue' size={15} /> </Star>
                   <Star> <FaStar color='blue' size={15} /> </Star>
                   <Star> <FaStar color='blue' size={15} /> </Star>
                 </Puntuacion> 
-                : <></>
+                : <></> */
               }
-
               <Next> 
                 <FaAngleRight color='gray' size={18} 
                   onClick={ () => { 
-                    //Implementar este action para que sea solo 1 
-                    dispatch(updateWorkerSelectedData(worker))
-                    dispatch(updateWorkerSelected(true)) 
-                  } }
+                    updateSelectedData(worker);
+                    changeWorkerSelectedState(true);
+                  }}
                 /> 
               </Next>
             </ItemWorker> ) 
         }) : null
       }
-      {/*Modales*/}
-      {
-        modalAddState
-        ? <WorkerAddModal isOpen={modalAddState} handleClose = {closeModal} />
-        : null
-      }
+      <WorkerAddModal isOpen={isModalAddOpen} handleClose = {closeModalAdd} />
     </Content>
   )
 }

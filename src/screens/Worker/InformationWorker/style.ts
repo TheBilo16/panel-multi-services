@@ -3,6 +3,7 @@ import styled , { css } from 'styled-components';
 const Content = styled.div`
   display:flex;
   width:500px;
+  min-width:500px;
   padding:20px 30px;
   flex-flow:column;
 `

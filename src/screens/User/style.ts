@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Content = styled.div`
-  padding:20px;
-`
-
-export {
-  Content  
+const UserStyles = {
+  content : styled.div`
+    padding:20px;
+  `
 }
+
+export default UserStyles;

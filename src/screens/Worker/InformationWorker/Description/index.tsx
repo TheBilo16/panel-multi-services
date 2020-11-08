@@ -1,59 +1,58 @@
 import React from 'react'
 
-//Stlyes
-import {
-  Content,
-  ContentImage,
-  Image,
-  Name,
-  ContentPuntuacion,
-  Puntuacion,
-  Star,
-  Information,
-  ExtraInformation,
-  Horario,
-  PrecioBase,
-  Text
-} from './style'
-import { FaStar } from 'react-icons/fa';
+//DESIGN
+import DescriptionStyles from './style'
+import { FaStar , FaTrash} from 'react-icons/fa';
 
-//REDUX 
-import { useSelector } from 'react-redux';
+//HOOKS
+import useWorkerHook from '../../../../Hooks/Worker/workerHook';
 
 const Description = () => {
 
-  const { workerSelectedData } = useSelector(({worker})=>worker);
+  const {
+    workerSelectedData,
+    removeWorker
+  } = useWorkerHook();
 
   return (
-    <Content> 
-      <ContentImage>
-        <Image src={workerSelectedData.profileImage}/>
-      </ContentImage> 
-      <Name> {workerSelectedData.fullname}  </Name>
-      <ContentPuntuacion>
-        <Puntuacion>
-          <Star><FaStar color='blue' size={15} /></Star>
-          <Star><FaStar color='blue' size={15} /></Star>
-          <Star><FaStar color='blue' size={15} /></Star>
-          <Star><FaStar color='blue' size={15} /></Star>
-          <Star><FaStar color='blue' size={15} /></Star>
-        </Puntuacion>
-      </ContentPuntuacion> 
-      <Information> 
+    <DescriptionStyles.content> 
+      <DescriptionStyles.contentImage>
+        <DescriptionStyles.image src={workerSelectedData.profileImage}/>
+      </DescriptionStyles.contentImage> 
+      <DescriptionStyles.name> {workerSelectedData.fullname}  </DescriptionStyles.name>
+      {/* <DescriptionStyles.contentPuntuacion>
+        <DescriptionStyles.puntuacion>
+          <DescriptionStyles.star><FaStar color='blue' size={15} /></DescriptionStyles.star>
+          <DescriptionStyles.star><FaStar color='blue' size={15} /></DescriptionStyles.star>
+          <DescriptionStyles.star><FaStar color='blue' size={15} /></DescriptionStyles.star>
+          <DescriptionStyles.star><FaStar color='blue' size={15} /></DescriptionStyles.star>
+          <DescriptionStyles.star><FaStar color='blue' size={15} /></DescriptionStyles.star>
+        </DescriptionStyles.puntuacion>
+      </DescriptionStyles.contentPuntuacion>  */}
+      <DescriptionStyles.information> 
         {  workerSelectedData.description !== undefined ?
           workerSelectedData.description : "Not a description defined" } 
-      </Information>
-      <ExtraInformation>
-        <Horario>
-          <Text TITLE>Horario de atencion</Text>
-          <Text TEXT> Lun. a Vier </Text>
-        </Horario>
-        <PrecioBase>
-          <Text TITLE> Precio Inicial / Base </Text>
-          <Text TEXT> {workerSelectedData.basePrice} </Text>
-        </PrecioBase>
-      </ExtraInformation>
-    </Content>
+      </DescriptionStyles.information>
+      <DescriptionStyles.contentExtraInformation>
+        <DescriptionStyles.extraInformation>
+          <DescriptionStyles.text TITLE>Horario de atencion</DescriptionStyles.text>
+          <DescriptionStyles.text TEXT> Lun. a Vier </DescriptionStyles.text>
+        </DescriptionStyles.extraInformation>
+        <DescriptionStyles.extraInformation>
+          <DescriptionStyles.text TITLE> Precio Inicial / Base </DescriptionStyles.text>
+          <DescriptionStyles.text TEXT> {workerSelectedData.basePrice} </DescriptionStyles.text>
+        </DescriptionStyles.extraInformation>
+      </DescriptionStyles.contentExtraInformation>
+      <DescriptionStyles.buttonDelete
+        onClick={()=>{removeWorker(workerSelectedData.id)}}
+      >
+        <FaTrash 
+          size={13}
+          color='white'
+        />
+        <DescriptionStyles.text margin='0 0 0 5px' sizeText='13px'> Remover de trabajador </DescriptionStyles.text>
+      </DescriptionStyles.buttonDelete>
+    </DescriptionStyles.content>
   )
 }
 

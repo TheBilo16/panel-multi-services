@@ -9,21 +9,21 @@ import Header from "../../components/header";
 import List from './List';
 import InformationWorker from './InformationWorker';
 
-//REDUX
-import { useDispatch,useSelector } from 'react-redux';
-import { findWorkBySpecialty } from '../../redux/actions/WorkerActions';
-import { loadingInformationUser } from '../../redux/actions/UserActions';
+//HOOKS
+import useWorkerHook from '../../Hooks/Worker/workerHook';
+
 
 const Worker = () => {
-
-  const dispatch = useDispatch();
-  const { isWorkerSelected } = useSelector( ({worker}) => worker )
-  dispatch(loadingInformationUser());  
+  
+  const {
+    isWorkerSelected,
+    findWorker,
+  } = useWorkerHook();
 
   return (
     <Content>
       <Header 
-        onChange={ (e)=>{ dispatch(findWorkBySpecialty(e.target.value)) }} 
+        onChange={(e)=>{ findWorker(e.target.value) }} 
       />
       <ContentInformation>
         <List />

@@ -6,23 +6,28 @@ interface IInput {
   placeholder : string,
   type : string,
   Icon : IconType,
-  onChange(value?:any):void,
+  onChange?(value?:any):void,
   refs?:any,
-  value?:string
+  value?:string,
+  name?:string,
+  defaultValue?:string
 }
 
-const Input : FC<IInput> = ({placeholder,type,Icon,onChange,refs,value}) => {
+const Input : FC<IInput> = ({placeholder,type,Icon,onChange,refs,value,name,defaultValue}) => {
   return (
     <InputStyles.content>
       <InputStyles.icon>
-        <Icon size={13}/>
+        <Icon size={20} color='gray'/>
       </InputStyles.icon>
       <InputStyles.input 
         placeholder={placeholder}
         type = {type}
         onChange={onChange}
         ref={refs}
+        defaultValue = {defaultValue}
         value={value}
+        required
+        name = {name}
       />
     </InputStyles.content>
   )

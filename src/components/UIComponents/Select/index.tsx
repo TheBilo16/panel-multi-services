@@ -14,15 +14,18 @@ interface IOptionSelect {
 
 interface ISelect {
   options:Array<IOptionSelect>,
-  onClick(e:any):void
-  Icon:IconType
+  onClick?(e:any):void
+  Icon:IconType,
+  name : string,
+  defaultValue?:string
 }
 
-const Select : FC<ISelect>  = ({options,onClick,Icon}) => {
+const Select : FC<ISelect>  = ({options,onClick,Icon,name,defaultValue}) => {
+
   return (
     <Content>
       <IconContent> <Icon size = {20} color="gray" /> </IconContent>
-      <List onClick={onClick}>
+      <List onClick={onClick} name = {name} defaultValue = {defaultValue}>
         {
           options.map((e,i)=>{
             return (

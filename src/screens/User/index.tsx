@@ -1,25 +1,26 @@
 import React from 'react';
-import { Content } from './style';
-
-//REDUX
-import { useDispatch  } from 'react-redux';
-import { findByUserName } from '../../redux/actions/UserActions';
+import UserStyles from './style';
 
 //Components 
 import Header from '../../components/header';
 import List from './List';
 
+//HOOKS
+import useUserHook from '../../Hooks/User/userHook';
+
 const User = () => {
 
-  const dispatch = useDispatch();
+  const {
+    findUser
+  } = useUserHook()
 
   return (
-    <Content>
+    <UserStyles.content>
       <Header //InputSearch and date
-        onChange={(e)=>{ dispatch(findByUserName(e.target.value)) }}
+        onChange={findUser}
       /> 
       <List />
-    </Content>
+    </UserStyles.content>
   )
 }
 

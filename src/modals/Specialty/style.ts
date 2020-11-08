@@ -15,7 +15,7 @@ interface IButton {
 }
 
 const ModalStyles = {
-  content : styled.div<IModalContent>`
+  content : styled.form<IModalContent>`
     width:${({width})=> width||"350px"};
     min-width:${({width})=>width||"350px"};
     height:${({height})=>height||"max-content"};

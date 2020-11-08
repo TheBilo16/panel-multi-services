@@ -1,32 +1,29 @@
-import React from "react";
-import { 
-  Content,
-  Search,
-  IconSearch,
-  Input,
-  ContentDate,
-  Text,
-  IconDate
-} from "./styles";
+import React , {FC} from "react";
+import HeaderStyles from "./styles";
 import { FaSearch , FaCalendar } from "react-icons/fa";
 import moment from "moment";
 
-const Header = ({ onChange }) => {
+interface IHeader {
+  onChange?(e?:any):void,
+  placeholder?:string
+}
+
+const Header:FC<IHeader> = ({ onChange , placeholder }) => {
   return (
-    <Content>
-      <Search>
-        <IconSearch>
+    <HeaderStyles.content>
+      <HeaderStyles.search>
+        <HeaderStyles.iconSearch>
           <FaSearch color = 'gray' size={17} />
-        </IconSearch>
-      <Input placeholder='Buscar por nombre' onChange={onChange}/>  
-    </Search>
-      <ContentDate>
-        <IconDate>
+        </HeaderStyles.iconSearch>
+        <HeaderStyles.input placeholder={placeholder||'Buscar por nombre'} onChange={onChange}  />  
+      </HeaderStyles.search>
+      <HeaderStyles.date>
+        <HeaderStyles.iconDate>
           <FaCalendar color = 'gray' size={17} />
-        </IconDate>
-        <Text> {moment().format('LL')} </Text>
-      </ContentDate> 
-    </Content>
+        </HeaderStyles.iconDate>
+        <HeaderStyles.text> {moment().format('LL')} </HeaderStyles.text>
+      </HeaderStyles.date> 
+    </HeaderStyles.content>
   );
 }
 

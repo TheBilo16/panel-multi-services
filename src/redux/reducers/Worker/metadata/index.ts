@@ -26,7 +26,8 @@ namespace WorkerController {
     isLoadingInformation : boolean,
     isWorkerSelected:boolean,
     optionSelectedWorker : ToptionSelectedWorker,
-    workerSelectedData : IWorker
+    workerSelectedData : IWorker,
+    isModalAddOpen : boolean
   }
 }
 

@@ -2,7 +2,7 @@ import styled , { css } from 'styled-components';
 
 const Content = styled.div`
   display:flex;
-  width: 480px;
+  width: max-content;
   height:auto;
   flex-flow:column;
 `
@@ -10,6 +10,7 @@ const Content = styled.div`
 //Worker
 const ItemWorker = styled.div`
   display: flex;
+  width:max-content;
   height:60px;
   background:white;
   margin-bottom : 8px;
@@ -42,6 +43,7 @@ const Text = styled.p<{ NAME?:any,TITLE?:any } >`
   display:flex;
   font-size:15px;
   color:gray;
+  width:max-content;
   ${
     props =>
     props.NAME && css`
@@ -91,6 +93,7 @@ const Next = styled.div`
 const TitleList = styled.div`
   height:70px;
   display:flex;
+  width:100%;
   justify-content:space-between;
   align-items:center;
 `

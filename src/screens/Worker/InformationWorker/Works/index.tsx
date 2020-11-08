@@ -12,14 +12,16 @@ import {
   FechaEmision
 } from './style';
 
-//REDUX
-import {useSelector} from 'react-redux';
+//HOOKS
+import useWorkerHook from '../../../../Hooks/Worker/workerHook';
 
 const Works = () => {
-
-  const { workerSelectedData } = useSelector(({worker})=>worker);
+    
+  const {
+    workerSelectedData
+  } = useWorkerHook();
   const { works } = workerSelectedData;  
-  
+
   return (
     <Container> 
       <Title> {workerSelectedData.specialty} </Title>

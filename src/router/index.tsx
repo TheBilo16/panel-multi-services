@@ -14,6 +14,7 @@ import { checkAuthenticationState } from '../redux/actions/AuthActions';
 import { loadingInformationUser } from '../redux/actions/UserActions';
 import { loadingWorkers } from '../redux/actions/WorkerActions';
 import { loadingInformationSpecialty } from '../redux/actions/SpecialtyActions';
+import { loadingInformationCurriculum } from '../redux/actions/CurriculumActions';
 
 const Router = () => {
   const { isLoadingInformation , isAuthenticated } = useSelector(({ auth }) => auth , shallowEqual);
@@ -24,6 +25,7 @@ const Router = () => {
     dispatch(loadingWorkers());
     dispatch(checkAuthenticationState());
     dispatch(loadingInformationSpecialty());
+    dispatch(loadingInformationCurriculum());
   }, []);
 
   if(isLoadingInformation) return <RouterSpinner />
